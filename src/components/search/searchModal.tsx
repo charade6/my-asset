@@ -39,12 +39,15 @@ const SearchModal = ({
     () => getStockData(searchInputRef.current.value),
   );
 
-  const searchHandler = (e: React.KeyboardEvent) => {
+  const searchHandler = () => {
     if (!searchInputRef.current.value) {
       return;
     }
+    mutate();
+  };
+  const searchEnterKeyHandler = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
-      mutate();
+      searchHandler();
     }
   };
 
@@ -143,6 +146,14 @@ const SearchModal = ({
     }
   }, [view]);
 
+  useEffect(() => {
+    if (!searchStockData) {
+      setStockCount(0);
+      setStockPrice(0);
+      setChecked(false);
+    }
+  }, [searchStockData]);
+
   return (
     <Modal cssStyle="w-[80%]">
       {view === 0 && (
@@ -153,9 +164,13 @@ const SearchModal = ({
               type="text"
               placeholder="주식 검색"
               ref={searchInputRef}
-              onKeyUp={searchHandler}
+              onKeyUp={searchEnterKeyHandler}
             />
-            <button className="w-fit px-[5px]" type="button">
+            <button
+              className="w-fit px-[5px]"
+              type="button"
+              onClick={searchHandler}
+            >
               <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
             </button>
           </div>
