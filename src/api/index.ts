@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 const baseURL =
-  'https://api.odcloud.kr/api/GetStockSecuritiesInfoService/v1/getStockPriceInfo?resultType=json';
+  'https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?resultType=json';
 
 const serviceKey =
-  'gIgWSDzCeTDpTHNna3UfLVrfBmHbLPDu8IRh%2FvJuoHy5Sp1OFCc9r6uWHIqcEpCF8pWmul9zZMDQLafiKcrx3Q%3D%3D';
+  process.env.REACT_APP_API_KEY;
 
 const calcDate = () => {
   const today = new Date();
