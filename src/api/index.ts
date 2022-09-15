@@ -3,8 +3,7 @@ import axios from 'axios';
 const baseURL =
   'https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?resultType=json';
 
-const serviceKey =
-  process.env.REACT_APP_API_KEY;
+const serviceKey = import.meta.env.VITE_APP_API_KEY;
 
 const calcDate = () => {
   const today = new Date();
